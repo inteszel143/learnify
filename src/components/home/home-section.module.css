@@ -1,0 +1,53 @@
+.home { margin: 6px 12px; background: linear-gradient(#389ff9, #2165a3 62%, #174675); color: white; overflow: clip; }
+.hero { text-align: center; }
+.intro { position: relative; z-index: 1; max-width: 1350px; margin: auto; padding: 60px 24px 0; }
+.badge { display: inline-flex; align-items: center; gap: 8px; background: white; color: #171717; border-radius: 999px; padding: 13px 17px; font-size: 15px; font-weight: 500; }
+.badge svg { color: #3688cd; }
+.intro h1 { font-size: clamp(40px, 4.55vw, 82px); font-weight: 600; line-height: 1.22; letter-spacing: -1.8px; margin: 34px 0 24px; }
+.description { font-size: clamp(17px, 1.2vw, 22px); line-height: 1.5; color: #e0edf8; }
+.searchArea { max-width: 450px; margin: 42px auto 0; }
+.search { display: flex; align-items: center; gap: 8px; background: #fff; border-radius: 999px; padding: 10px 16px; color: #141414; min-height: 68px; }
+.search:focus-within { outline: 3px solid #ffe251; outline-offset: 4px; }
+.search button { display: grid; place-items: center; flex-shrink: 0; width: 34px; height: 44px; cursor: pointer; border-radius: 50%; }
+.search input { width: 100%; min-width: 0; font-size: 20px; outline: none; background: transparent; }
+.search input::placeholder { color: #737f8e; }
+.search button:focus-visible { outline: 2px solid #2165a3; }
+.searchStatus { font-size: 14px; margin-top: 12px; line-height: 1.5; }
+.searchStatus:empty { display: none; }
+.visual { margin-top: 24px; width: 100%; aspect-ratio: 2.02; }
+.student { object-fit: cover; }
+.card { position: absolute; width: 22%; max-width: 400px; padding: 28px 30px; text-align: left; background: #fff; border-radius: 30px; color: #111; }
+.card strong { display: block; font-size: clamp(32px, 3vw, 52px); line-height: 1.15; font-weight: 600; letter-spacing: -1px; }
+.card p { font-size: clamp(16px, 1.3vw, 23px); line-height: 1.5; margin-top: 14px; }
+.rating { top: 37%; left: 5.5%; }
+.learners { top: 9%; right: 5.5%; }
+.stars { display: flex; gap: 5px; color: #f3cd22; margin-top: 12px; }
+.communityIcon { color: #328bd2; margin-bottom: 18px; }
+.srOnly { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; border: 0; }
+@media (max-width: 1100px) {
+  .home { margin: 6px 12px; }
+  .intro { padding-top: 36px; }
+  .intro h1 { letter-spacing: -1px; }
+  .card { padding: 20px; border-radius: 22px; width: 26%; }
+  .rating { left: 3%; top: 28%; }
+  .learners { right: 3%; }
+  .card p { font-size: 15px; }
+  .stars { gap: 2px; }
+  .stars svg { width: 20px; }
+}
+@media (max-width: 640px) {
+  .home { margin: 0; }
+  .intro { padding: 28px 20px 0; }
+  .intro h1 { font-size: clamp(34px, 8.5vw, 50px); margin-top: 26px; }
+  .desktopBreak { display: none; }
+  .badge { font-size: 13px; }
+  .searchArea { margin-top: 28px; }
+  .search { min-height: 58px; padding-block: 6px; }
+  .search input { font-size: 16px; }
+  .visual { aspect-ratio: auto; display: grid; grid-template-columns: 1fr 1fr; gap: 12px; padding: 340px 16px 24px; }
+  .student { object-fit: cover; object-position: center top; height: 340px !important; }
+  .card { position: relative; inset: auto; width: auto; max-width: none; padding: 18px; border-radius: 18px; }
+  .card strong { font-size: 32px; }
+  .card p { font-size: 14px; }
+  .communityIcon { width: 30px; height: 30px; margin-bottom: 8px; }
+}
