@@ -1,0 +1,223 @@
+.section {
+  padding: clamp(64px, 7vw, 100px) clamp(24px, 4.2vw, 72px) 88px;
+  background: #fff;
+  color: #101010;
+}
+
+.heading {
+  margin: 0 auto clamp(42px, 4.5vw, 64px);
+  text-align: center;
+}
+
+.heading h2 {
+  margin: 0;
+  font-size: clamp(2rem, 3.2vw, 3.5rem);
+  font-weight: 700;
+  letter-spacing: -0.035em;
+  line-height: 1.15;
+}
+
+.heading p {
+  margin: 16px auto 0;
+  color: #252a32;
+  font-size: clamp(1rem, 1.15vw, 1.25rem);
+  line-height: 1.55;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr) minmax(0, 1fr);
+  grid-template-rows: minmax(260px, 1.25fr) minmax(190px, 0.85fr);
+  grid-template-areas:
+    "first community flexible"
+    "trainers community second";
+  gap: 16px;
+  max-width: 1500px;
+  margin: 0 auto;
+}
+
+.photo,
+.infoCard {
+  min-width: 0;
+  overflow: hidden;
+  border-radius: 24px;
+}
+
+.photo {
+  position: relative;
+  background: #e8edf2;
+}
+
+.photo img {
+  object-fit: cover;
+}
+
+.firstPhoto {
+  grid-area: first;
+}
+
+.secondPhoto {
+  grid-area: second;
+}
+
+.infoCard {
+  padding: clamp(20px, 2vw, 30px);
+  background: #eaf2ff;
+}
+
+.trainers {
+  grid-area: trainers;
+}
+
+.flexible {
+  grid-area: flexible;
+}
+
+.infoCard h3 {
+  margin: 14px 0 6px;
+  font-size: clamp(1.15rem, 1.45vw, 1.5rem);
+  font-weight: 650;
+  line-height: 1.25;
+}
+
+.infoCard p,
+.communityContent p {
+  margin: 0;
+  color: #3b4656;
+  font-size: clamp(0.9rem, 1.05vw, 1.05rem);
+  line-height: 1.55;
+}
+
+.icon {
+  display: grid;
+  width: 52px;
+  height: 52px;
+  place-items: center;
+  flex: 0 0 auto;
+  border-radius: 50%;
+  background: linear-gradient(145deg, #39c7e4, #3266ed);
+  color: #fff;
+}
+
+.community {
+  grid-area: community;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: clamp(20px, 2vw, 30px);
+}
+
+.orbit {
+  position: relative;
+  width: min(100%, 380px);
+  aspect-ratio: 1;
+  margin: 0 auto 20px;
+  border: 2px solid transparent;
+  border-radius: 50%;
+  background:
+    linear-gradient(#eaf2ff, #eaf2ff) padding-box,
+    conic-gradient(from 25deg, #d4e8f4 0 25%, #f07d91 25% 49%, #6bd788 49% 79%, #d4e8f4 79% 100%) border-box;
+}
+
+.member,
+.centerMember {
+  position: absolute;
+  display: block;
+  overflow: hidden;
+  border: 3px solid #eaf2ff;
+  border-radius: 50%;
+  background: #d3deeb;
+}
+
+.member img,
+.centerMember img {
+  object-fit: cover;
+}
+
+.member {
+  width: 15%;
+  aspect-ratio: 1;
+}
+
+.centerMember {
+  top: 50%;
+  left: 50%;
+  width: 30%;
+  aspect-ratio: 1;
+  transform: translate(-50%, -50%);
+  border-width: 4px;
+}
+
+.top { top: -5%; left: 43%; }
+.upperRight { top: 22%; right: -5%; }
+.lowerRight { right: 3%; bottom: 8%; }
+.bottom { bottom: -5%; left: 43%; }
+.lowerLeft { bottom: 12%; left: 3%; }
+.upperLeft { top: 25%; left: -5%; }
+
+.communityContent {
+  position: relative;
+}
+
+.communityTitle {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 12px;
+}
+
+.communityTitle h3 {
+  margin: 0;
+  font-size: clamp(1.15rem, 1.45vw, 1.5rem);
+  font-weight: 650;
+  line-height: 1.25;
+}
+
+@media (max-width: 1050px) {
+  .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-rows: auto;
+    grid-template-areas:
+      "first trainers"
+      "community community"
+      "flexible second";
+  }
+
+  .photo {
+    aspect-ratio: 1.1;
+  }
+
+  .community {
+    min-height: 520px;
+  }
+}
+
+@media (max-width: 640px) {
+  .grid {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-areas:
+      "first"
+      "trainers"
+      "community"
+      "flexible"
+      "second";
+    max-width: 480px;
+    gap: 14px;
+  }
+
+  .photo {
+    aspect-ratio: 1.1;
+  }
+
+  .community {
+    min-height: 450px;
+  }
+
+  .orbit {
+    width: min(85%, 310px);
+  }
+
+  .desktopBreak {
+    display: none;
+  }
+}

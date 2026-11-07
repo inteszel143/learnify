@@ -1,0 +1,177 @@
+.section {
+  overflow: hidden;
+  padding: clamp(64px, 6vw, 88px) 0 80px;
+  background: #fff;
+  color: #101010;
+}
+
+.heading {
+  margin: 0 auto clamp(40px, 4.2vw, 64px);
+  padding: 0 24px;
+  text-align: center;
+}
+
+.heading h2 {
+  margin: 0;
+  font-size: clamp(2rem, 3.5vw, 3.5rem);
+  font-weight: 700;
+  letter-spacing: -0.035em;
+  line-height: 1.15;
+}
+
+.heading p {
+  margin: 16px auto 0;
+  color: #20232a;
+  font-size: clamp(1rem, 1.25vw, 1.2rem);
+  line-height: 1.55;
+}
+
+.storyTrack {
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scrollbar-width: none;
+  touch-action: pan-x;
+}
+
+.storyTrack::-webkit-scrollbar {
+  display: none;
+}
+
+.storyTrack:focus-visible {
+  outline: 3px solid #287cf0;
+  outline-offset: -3px;
+}
+
+.storyTrackInner {
+  display: flex;
+  width: max-content;
+  animation: stories-scroll 60s linear infinite;
+}
+
+.storyGroup {
+  display: flex;
+  flex: 0 0 auto;
+  gap: 24px;
+  padding-right: 24px;
+}
+
+.storyTrack:hover .storyTrackInner,
+.storyTrack:active .storyTrackInner {
+  animation-play-state: paused;
+}
+
+@keyframes stories-scroll {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.story {
+  position: relative;
+  flex: 0 0 clamp(300px, 26vw, 410px);
+  overflow: hidden;
+  aspect-ratio: 0.82;
+  border-radius: 28px;
+  background: #d7e1ef;
+  isolation: isolate;
+}
+
+.story > img {
+  z-index: -2;
+  object-fit: cover;
+  transition: transform 300ms ease;
+}
+
+.story:hover > img {
+  transform: scale(1.035);
+}
+
+.storyOverlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 24px;
+  background: linear-gradient(
+    180deg,
+    transparent 44%,
+    rgb(0 0 0 / 15%) 62%,
+    rgb(0 0 0 / 76%) 100%
+  );
+  color: #fff;
+}
+
+.storyText h3 {
+  margin: 0;
+  font-size: clamp(1.25rem, 1.65vw, 1.65rem);
+  font-weight: 650;
+  line-height: 1.25;
+}
+
+.storyText p {
+  margin: 5px 0 0;
+  color: rgb(255 255 255 / 85%);
+  font-size: 1rem;
+}
+
+.playIcon {
+  display: grid;
+  width: 58px;
+  height: 58px;
+  flex: 0 0 auto;
+  place-items: center;
+  padding-left: 3px;
+  border-radius: 50%;
+  background: #fff;
+  color: #111;
+}
+
+@media (max-width: 640px) {
+  .heading {
+    margin-bottom: 32px;
+  }
+
+  .desktopBreak {
+    display: none;
+  }
+
+  .storyGroup {
+    gap: 16px;
+    padding-right: 16px;
+  }
+
+  .story {
+    flex-basis: 82vw;
+    border-radius: 22px;
+  }
+
+  .storyOverlay {
+    padding: 18px;
+  }
+
+  .playIcon {
+    width: 50px;
+    height: 50px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .storyTrack {
+    overflow-x: auto;
+    scrollbar-width: thin;
+  }
+
+  .storyTrackInner {
+    animation: none;
+  }
+
+  .duplicateGroup {
+    display: none;
+  }
+
+  .story > img {
+    transition: none;
+  }
+}

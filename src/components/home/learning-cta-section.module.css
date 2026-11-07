@@ -1,0 +1,135 @@
+.section {
+  position: relative;
+  min-height: 700px;
+  overflow: hidden;
+  padding: clamp(56px, 5vw, 76px) 24px 0;
+  background: #fff;
+  color: #101010;
+  isolation: isolate;
+}
+
+.section::before {
+  position: absolute;
+  z-index: -1;
+  inset: 100px 0 -450px;
+  border-radius: 50% 50% 0 0 / 48% 48% 0 0;
+  background: repeating-radial-gradient(
+    ellipse at 50% 100%,
+    #80b3fa 0,
+    #80b3fa 20%,
+    #b5d2fb 20.2%,
+    #b5d2fb 34%,
+    #d9e8fc 34.2%,
+    #d9e8fc 47%,
+    #eff5ff 47.2%,
+    #eff5ff 60%
+  );
+  content: "";
+}
+
+.content {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+}
+
+.content h2 {
+  margin: 0;
+  font-size: clamp(2.2rem, 3.5vw, 3.5rem);
+  font-weight: 700;
+  letter-spacing: -0.035em;
+  line-height: 1.15;
+}
+
+.content p {
+  margin: 12px auto 22px;
+  color: #20232a;
+  font-size: clamp(1rem, 1.2vw, 1.15rem);
+  line-height: 1.55;
+}
+
+.button {
+  display: inline-flex;
+  min-height: 46px;
+  align-items: center;
+  gap: 12px;
+  padding: 4px 5px 4px 20px;
+  border-radius: 999px;
+  background: #287cf0;
+  color: #fff;
+  font-size: 0.9rem;
+  font-weight: 550;
+  text-decoration: none;
+  transition: background-color 160ms ease, transform 160ms ease;
+}
+
+.button:hover {
+  transform: translateY(-1px);
+  background: #1768db;
+}
+
+.button:focus-visible {
+  outline: 3px solid #163f81;
+  outline-offset: 4px;
+}
+
+.buttonIcon {
+  display: grid;
+  width: 36px;
+  height: 36px;
+  place-items: center;
+  border-radius: 50%;
+  background: #fff;
+  color: #111;
+}
+
+.visual {
+  position: absolute;
+  right: 0;
+  bottom: -1px;
+  left: 0;
+  width: min(100%, 1180px);
+  aspect-ratio: 1.8;
+  margin: 0 auto;
+  clip-path: ellipse(43% 76% at 50% 76%);
+}
+
+.student {
+  object-fit: cover;
+  object-position: center top;
+}
+
+@media (max-width: 700px) {
+  .section {
+    min-height: 590px;
+    padding: 52px 18px 0;
+  }
+
+  .section::before {
+    inset: 160px -220px -200px;
+    border-radius: 50% 50% 0 0 / 40% 40% 0 0;
+  }
+
+  .content p {
+    max-width: 34rem;
+    margin-bottom: 20px;
+  }
+
+  .desktopBreak {
+    display: none;
+  }
+
+  .visual {
+    width: 145%;
+    max-width: 700px;
+    aspect-ratio: 1.4;
+    transform: translateX(-15.5%);
+    clip-path: ellipse(42% 75% at 50% 75%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .button {
+    transition: none;
+  }
+}

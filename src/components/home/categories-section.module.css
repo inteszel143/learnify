@@ -1,0 +1,138 @@
+.section {
+  padding: clamp(64px, 7vw, 112px) clamp(24px, 5vw, 84px) 88px;
+  background: #fff;
+  color: #101010;
+}
+
+.heading {
+  margin: 0 auto clamp(48px, 5vw, 80px);
+  text-align: center;
+}
+
+.heading h2 {
+  margin: 0;
+  font-size: clamp(2rem, 3.6vw, 4rem);
+  font-weight: 700;
+  letter-spacing: -0.035em;
+  line-height: 1.15;
+}
+
+.heading p {
+  margin: 22px auto 0;
+  color: #20232a;
+  font-size: clamp(1.05rem, 1.4vw, 1.5rem);
+  line-height: 1.55;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(20px, 2vw, 36px);
+  max-width: 1640px;
+  margin: 0 auto;
+}
+
+.category {
+  min-width: 0;
+  text-align: center;
+}
+
+.imageFrame {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 1.57;
+  border-radius: clamp(20px, 2vw, 34px);
+  background: #e7edf2;
+}
+
+.imageFrame img {
+  object-fit: cover;
+  transition: transform 300ms ease;
+}
+
+.imageFrame::after {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgb(0 0 0 / 48%), rgb(0 0 0 / 20%));
+  content: "";
+  opacity: 0;
+  transition: opacity 200ms ease;
+}
+
+.category:hover .imageFrame img,
+.category:focus-within .imageFrame img {
+  transform: scale(1.04);
+}
+
+.category:hover .imageFrame::after,
+.category:focus-within .imageFrame::after {
+  opacity: 1;
+}
+
+.arrow {
+  position: absolute;
+  z-index: 1;
+  top: 50%;
+  left: 50%;
+  display: grid;
+  width: clamp(64px, 5vw, 84px);
+  aspect-ratio: 1;
+  place-items: center;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: #fff;
+  color: #111;
+  opacity: 0;
+  transition: opacity 200ms ease, transform 200ms ease;
+}
+
+.category:hover .arrow,
+.category:focus-within .arrow {
+  transform: translate(-50%, -50%) scale(1);
+  opacity: 1;
+}
+
+.category h3 {
+  margin: 26px 0 6px;
+  font-size: clamp(1.35rem, 1.8vw, 2rem);
+  font-weight: 650;
+  line-height: 1.25;
+}
+
+.category > p {
+  margin: 0;
+  color: #354052;
+  font-size: clamp(1.1rem, 1.4vw, 1.5rem);
+}
+
+@media (max-width: 760px) {
+  .section {
+    padding-inline: 24px;
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 36px;
+    max-width: 560px;
+  }
+
+  .heading {
+    margin-bottom: 40px;
+  }
+
+  .heading p {
+    max-width: 36rem;
+  }
+
+  .desktopBreak {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .imageFrame img,
+  .imageFrame::after,
+  .arrow {
+    transition: none;
+  }
+}

@@ -1,0 +1,135 @@
+.footer {
+  background: #000;
+  color: #fff;
+}
+
+.content {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 64px clamp(24px, 6vw, 88px) 24px;
+}
+
+.top {
+  display: grid;
+  grid-template-columns: minmax(0, 1.7fr) repeat(2, minmax(150px, 0.7fr));
+  gap: clamp(36px, 8vw, 120px);
+  padding-bottom: 48px;
+}
+
+.brandBlock {
+  max-width: 390px;
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: #fff;
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: -1px;
+  line-height: 1;
+}
+
+.logo {
+  width: 44px;
+  height: 44px;
+  flex: none;
+  color: #ffdf32;
+}
+
+.brandBlock > p {
+  max-width: 340px;
+  margin: 18px 0 0;
+  color: #c1ccda;
+  font-size: 1rem;
+  line-height: 1.65;
+}
+
+.linkGroup {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 13px;
+}
+
+.linkGroup h2 {
+  margin: 3px 0 5px;
+  font-size: 1rem;
+  font-weight: 650;
+}
+
+.linkGroup a,
+.backToTop {
+  color: #c1ccda;
+  font-size: 0.92rem;
+  text-decoration: none;
+  text-underline-offset: 4px;
+}
+
+.linkGroup a:hover,
+.backToTop:hover {
+  color: #fff;
+  text-decoration: underline;
+}
+
+.brand:focus-visible,
+.linkGroup a:focus-visible,
+.backToTop:focus-visible {
+  border-radius: 4px;
+  outline: 3px solid #80b3fa;
+  outline-offset: 4px;
+}
+
+.bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding-top: 20px;
+  border-top: 1px solid rgb(255 255 255 / 14%);
+}
+
+.bottom p {
+  margin: 0;
+  color: #aeb9c8;
+  font-size: 0.85rem;
+}
+
+.backToTop {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+}
+
+@media (max-width: 640px) {
+  .content {
+    padding: 48px 22px 22px;
+  }
+
+  .top {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 36px 22px;
+    padding-bottom: 36px;
+  }
+
+  .brandBlock {
+    grid-column: 1 / -1;
+  }
+
+  .brand {
+    font-size: 1.8rem;
+  }
+
+  .logo {
+    width: 40px;
+    height: 40px;
+  }
+
+  .bottom {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 14px;
+  }
+}

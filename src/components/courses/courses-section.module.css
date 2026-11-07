@@ -1,0 +1,268 @@
+.section {
+  padding: clamp(64px, 7vw, 96px) clamp(24px, 6.7vw, 96px) 88px;
+  background: #e8f0ff;
+  color: #101010;
+}
+
+.heading {
+  margin: 0 auto 34px;
+  text-align: center;
+}
+
+.heading h2 {
+  margin: 0;
+  font-size: clamp(2rem, 3.5vw, 3.5rem);
+  font-weight: 700;
+  letter-spacing: -0.035em;
+  line-height: 1.15;
+}
+
+.heading p {
+  margin: 14px auto 0;
+  color: #20232a;
+  font-size: clamp(1rem, 1.25vw, 1.2rem);
+  line-height: 1.55;
+}
+
+.categories {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin: 0 auto 48px;
+}
+
+.categoryButton {
+  min-height: 46px;
+  padding: 0 20px;
+  border: 0;
+  border-radius: 999px;
+  background: #fff;
+  color: #20232a;
+  font: inherit;
+  font-size: 0.9rem;
+  white-space: nowrap;
+  transition: background-color 160ms ease, color 160ms ease;
+}
+
+.categoryButton:hover {
+  background: #f5f8ff;
+}
+
+.selectedCategory,
+.selectedCategory:hover {
+  background: #287cf0;
+  color: #fff;
+}
+
+.categoryButton:focus-visible {
+  outline: 3px solid #163f81;
+  outline-offset: 3px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
+  max-width: 1440px;
+  margin: 0 auto;
+}
+
+.course {
+  min-width: 0;
+  overflow: hidden;
+  padding: 10px;
+  border-radius: 27px;
+  background: #fff;
+}
+
+.thumbnail {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 1.68;
+  border-radius: 19px;
+  background: #d7e1ef;
+}
+
+.thumbnail img {
+  object-fit: cover;
+  transition: transform 250ms ease;
+}
+
+.course:hover .thumbnail img {
+  transform: scale(1.035);
+}
+
+.badge {
+  position: absolute;
+  z-index: 1;
+  top: 12px;
+  display: inline-flex;
+  align-items: center;
+  min-height: 32px;
+  padding: 0 11px;
+  border-radius: 999px;
+  background: #fff;
+  font-size: 0.8rem;
+  line-height: 1;
+}
+
+.rating {
+  left: 12px;
+  gap: 4px;
+  color: #171717;
+}
+
+.rating svg {
+  color: #e5b400;
+}
+
+.level {
+  right: 12px;
+  color: #287cf0;
+}
+
+.details {
+  padding: 14px 5px 5px;
+}
+
+.details h3 {
+  overflow: hidden;
+  margin: 0;
+  font-size: clamp(1.05rem, 1.4vw, 1.3rem);
+  font-weight: 700;
+  line-height: 1.3;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.instructor {
+  margin: 3px 0 16px;
+  color: #283342;
+  font-size: 0.88rem;
+}
+
+.instructor span {
+  color: #1264ec;
+}
+
+.stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.stats li {
+  display: inline-flex;
+  align-items: center;
+  min-height: 34px;
+  gap: 5px;
+  padding: 0 10px;
+  border: 1px solid #d5deea;
+  border-radius: 999px;
+  background: #f4f7fb;
+  color: #181c23;
+  font-size: 0.76rem;
+  white-space: nowrap;
+}
+
+.stats svg {
+  flex: 0 0 auto;
+}
+
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.price {
+  margin: 0;
+  white-space: nowrap;
+}
+
+.price strong {
+  font-size: clamp(1.15rem, 1.55vw, 1.45rem);
+  font-weight: 700;
+}
+
+.price span {
+  font-size: 0.72rem;
+}
+
+.enrollLabel {
+  display: inline-flex;
+  min-height: 40px;
+  align-items: center;
+  justify-content: center;
+  padding: 0 16px;
+  border-radius: 999px;
+  background: #050505;
+  color: #fff;
+  font-size: 0.82rem;
+  white-space: nowrap;
+}
+
+@media (max-width: 960px) {
+  .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .section {
+    padding-inline: 18px;
+  }
+
+  .heading {
+    margin-bottom: 28px;
+  }
+
+  .desktopBreak {
+    display: none;
+  }
+
+  .categories {
+    justify-content: flex-start;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    margin: 0 -18px 30px;
+    padding: 2px 18px 8px;
+    scrollbar-width: none;
+  }
+
+  .categories::-webkit-scrollbar {
+    display: none;
+  }
+
+  .grid {
+    grid-template-columns: minmax(0, 1fr);
+    max-width: 460px;
+    gap: 16px;
+  }
+
+  .course {
+    padding: 9px;
+    border-radius: 23px;
+  }
+
+  .thumbnail {
+    aspect-ratio: 1.75;
+  }
+
+  .details h3 {
+    font-size: 1.2rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .categoryButton,
+  .thumbnail img {
+    transition: none;
+  }
+}
