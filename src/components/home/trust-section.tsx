@@ -37,7 +37,7 @@ const communityMembers = [
 
 export function TrustSection() {
   return (
-    <section className={styles.section} aria-labelledby="trust-heading">
+    <section id="about" tabIndex={-1} className={styles.section} aria-labelledby="trust-heading">
       <header className={styles.heading}>
         <h2 id="trust-heading">Why Thousands of Learners Trust Us</h2>
         <p>

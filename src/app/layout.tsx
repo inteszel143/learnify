@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { DM_Sans, Geist_Mono } from "next/font/google";
-import { Footer } from "@/components/footer";
 import "./globals.css";
 
 const dmSans = DM_Sans({
@@ -31,7 +30,6 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     >
       <body className="min-h-full flex flex-col">
         {children}
-        <Footer />
       </body>
     </html>
   );

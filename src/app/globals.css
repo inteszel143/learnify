@@ -4,6 +4,7 @@
   --background: #ffffff;
   --foreground: #171717;
   color-scheme: light;
+  --heading-letter-spacing: -0.025em;
 }
 
 html,
@@ -11,6 +12,27 @@ body {
   min-height: 100%;
   background: var(--background);
   overscroll-behavior: none;
+}
+
+html {
+  scroll-padding-top: 112px;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html { scroll-behavior: smooth; }
+}
+
+@layer base {
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-sans);
+    font-weight: 700;
+    letter-spacing: var(--heading-letter-spacing);
+    line-height: 1.15;
+  }
+
+  button, input, select, textarea {
+    font-family: inherit;
+  }
 }
 
 @theme inline {
@@ -27,12 +49,14 @@ body {
   color: var(--foreground);
 }
 
-button:not(:disabled),
-[role="button"],
-input[type="button"]:not(:disabled),
-input[type="reset"]:not(:disabled),
-input[type="submit"]:not(:disabled) {
+:is(button, [role="button"], a[href], summary, select,
+  input[type="button"], input[type="reset"], input[type="submit"],
+  input[type="checkbox"], input[type="radio"]):not(:disabled):not([aria-disabled="true"]) {
   cursor: pointer;
+}
+
+:is(button, [role="button"], a[href], summary, select, input):is(:disabled, [aria-disabled="true"]) {
+  cursor: not-allowed;
 }
 
 @keyframes toast-slide-in {

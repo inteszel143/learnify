@@ -1,8 +1,5 @@
-"use client";
-
 import Image from "next/image";
 import { Play } from "lucide-react";
-import { useEffect, useRef } from "react";
 import styles from "./stories-section.module.css";
 
 const stories = [
@@ -45,16 +42,6 @@ const stories = [
 ];
 
 export function StoriesSection() {
-  const storyTrackRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const track = storyTrackRef.current;
-    const firstGroup = track?.firstElementChild;
-    if (track && firstGroup) {
-      track.scrollLeft = firstGroup.getBoundingClientRect().width;
-    }
-  }, []);
-
   return (
     <section className={styles.section} aria-labelledby="stories-heading">
       <header className={styles.heading}>
@@ -69,7 +56,6 @@ export function StoriesSection() {
         className={styles.storyTrack}
         role="region"
         aria-label="Learner success stories"
-        ref={storyTrackRef}
         tabIndex={0}
       >
         <div className={styles.storyTrackInner}>

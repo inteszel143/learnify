@@ -1,29 +1,58 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { useRef, useState } from "react";
+import { useRef, useState, useSyncExternalStore } from "react";
 import { ArrowUpRight, Menu, X } from "lucide-react";
 import styles from "./navbar.module.css";
 
 const links = [
-  { label: "Home", href: "/" },
-  { label: "Courses", href: "/courses" },
-  { label: "Instructors", href: "/instructors" },
-  { label: "Blog", href: "/blog" },
-  { label: "About Us", href: "/about" },
-  { label: "Contact", href: "/contact" },
+  { label: "Home", href: "#home" },
+  { label: "Courses", href: "#courses" },
+  { label: "Instructors", href: "#instructors" },
+  { label: "About Us", href: "#about" },
+  { label: "Contact", href: "#contact" },
 ];
 
+function subscribeToScroll(onScroll: () => void) {
+  window.addEventListener("scroll", onScroll, { passive: true });
+  window.addEventListener("resize", onScroll);
+  window.addEventListener("hashchange", onScroll);
+  return () => {
+    window.removeEventListener("scroll", onScroll);
+    window.removeEventListener("resize", onScroll);
+    window.removeEventListener("hashchange", onScroll);
+  };
+}
+
+const getScrolled = () => window.scrollY > 0;
+const getServerScrolled = () => false;
+
+function getActiveSection() {
+  let active = "#home";
+  let closestTop = -Infinity;
+  for (const { href } of links) {
+    const top = document.getElementById(href.slice(1))?.getBoundingClientRect().top;
+    if (top !== undefined && top <= 128 && top > closestTop) {
+      active = href;
+      closestTop = top;
+    }
+  }
+  return active;
+}
+
+const getServerSection = () => "#home";
+
 export function Navbar() {
-  const pathname = usePathname();
   const [open, setOpen] = useState(false);
   const toggle = useRef<HTMLButtonElement>(null);
+  const scrolled = useSyncExternalStore(subscribeToScroll, getScrolled, getServerScrolled);
+  const activeSection = useSyncExternalStore(subscribeToScroll, getActiveSection, getServerSection);
 
   return (
     <header className={styles.header}>
       <nav
         className={styles.nav}
+        data-scrolled={scrolled}
         aria-label="Main navigation"
         onKeyDown={(event) => {
           if (event.key === "Escape" && open) {
@@ -32,7 +61,7 @@ export function Navbar() {
           }
         }}
       >
-        <Link href="/" className={styles.brand} onClick={() => setOpen(false)}>
+        <a href="#home" className={styles.brand} onClick={() => setOpen(false)}>
           <svg
             className={styles.logo}
             viewBox="0 0 52 52"
@@ -47,7 +76,7 @@ export function Navbar() {
             <circle cx="46" cy="32" r="2" fill="currentColor" />
           </svg>
           <span>Learnify</span>
-        </Link>
+        </a>
         <button
           ref={toggle}
           className={styles.toggle}
@@ -63,14 +92,13 @@ export function Navbar() {
           <ul className={styles.links}>
             {links.map(({ label, href }) => (
               <li key={href}>
-                <Link
+                <a
                   href={href}
-                  prefetch={false}
-                  aria-current={pathname === href ? "page" : undefined}
+                  aria-current={activeSection === href ? "location" : undefined}
                   onClick={() => setOpen(false)}
                 >
                   {label}
-                </Link>
+                </a>
               </li>
             ))}
           </ul>

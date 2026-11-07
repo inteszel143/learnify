@@ -13,7 +13,7 @@
   margin: 0;
   font-size: clamp(2rem, 3.5vw, 3.5rem);
   font-weight: 700;
-  letter-spacing: -0.035em;
+  letter-spacing: var(--heading-letter-spacing);
   line-height: 1.15;
 }
 
@@ -64,9 +64,30 @@
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 20px;
-  max-width: 1440px;
+  max-width: 1120px;
   margin: 0 auto;
 }
+
+.pagination {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 16px;
+  max-width: 1120px;
+  margin: 36px auto 0;
+}
+
+.indicators { grid-column: 2; display: flex; align-items: center; justify-content: center; }
+.indicator { display: grid; place-items: center; min-width: 28px; height: 44px; padding: 0 5px; border-radius: 8px; }
+.indicator span { width: 8px; height: 8px; border-radius: 999px; background: #b6d4f6; }
+.indicator[aria-current="page"] span { width: 44px; background: #287cf0; }
+.indicator:hover span { background: #2169b5; }
+.pageArrows { display: flex; justify-self: end; gap: 12px; }
+.pageArrow { display: grid; place-items: center; width: 46px; height: 46px; border: 1px solid #287cf0; border-radius: 12px; background: #287cf0; color: #fff; }
+.pageArrow:hover:not(:disabled) { background: #1768db; }
+.pageArrow:disabled { border-color: #94a5ba; background: transparent; color: #64748b; }
+.indicator:focus-visible, .pageArrow:focus-visible { outline: 3px solid #163f81; outline-offset: 3px; }
+.pageStatus { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
 
 .course {
   min-width: 0;
@@ -209,12 +230,17 @@
 }
 
 @media (max-width: 960px) {
+  .pagination { max-width: 740px; }
   .grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+    max-width: 740px;
   }
 }
 
 @media (max-width: 640px) {
+  .pagination { max-width: 360px; grid-template-columns: 1fr; gap: 12px; margin-top: 24px; }
+  .indicators { grid-column: 1; }
+  .pageArrows { justify-self: center; }
   .section {
     padding-inline: 18px;
   }
@@ -242,7 +268,7 @@
 
   .grid {
     grid-template-columns: minmax(0, 1fr);
-    max-width: 460px;
+    max-width: 360px;
     gap: 16px;
   }
 

@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { useState } from "react";
-import { BookOpen, Clock3, Star, UsersRound } from "lucide-react";
+import { ArrowLeft, ArrowRight, BookOpen, Clock3, Star, UsersRound } from "lucide-react";
 import styles from "./courses-section.module.css";
 
 const categories = [
@@ -103,16 +103,22 @@ const courses: Course[] = [
   },
 ];
 
+const pageSize = 6;
+
 export function CoursesSection() {
   const [selectedCategory, setSelectedCategory] =
     useState<CourseCategory>("All courses");
+  const [page, setPage] = useState(0);
   const visibleCourses =
     selectedCategory === "All courses"
       ? courses
       : courses.filter((course) => course.category === selectedCategory);
+  const pageCount = Math.ceil(visibleCourses.length / pageSize);
+  const currentPage = Math.min(page, pageCount - 1);
+  const pageCourses = visibleCourses.slice(currentPage * pageSize, (currentPage + 1) * pageSize);
 
   return (
-    <section className={styles.section} aria-labelledby="courses-heading">
+    <section id="courses" tabIndex={-1} className={styles.section} aria-labelledby="courses-heading">
       <header className={styles.heading}>
         <h2 id="courses-heading">Explore Most Popular Courses</h2>
         <p>
@@ -130,15 +136,15 @@ export function CoursesSection() {
             key={category}
             type="button"
             aria-pressed={selectedCategory === category}
-            onClick={() => setSelectedCategory(category)}
+            onClick={() => { setSelectedCategory(category); setPage(0); }}
           >
             {category}
           </button>
         ))}
       </div>
 
-      <div className={styles.grid} aria-live="polite">
-        {visibleCourses.map((course) => (
+      <div id="course-pages" className={styles.grid}>
+        {pageCourses.map((course) => (
           <article className={styles.course} key={course.title}>
             <div className={styles.thumbnail}>
               <Image
@@ -187,6 +193,30 @@ export function CoursesSection() {
             </div>
           </article>
         ))}
+      </div>
+      <div className={styles.pagination}>
+        <nav className={styles.indicators} aria-label="Course pages">
+          {Array.from({ length: pageCount }, (_, index) => (
+            <button
+              key={index}
+              type="button"
+              className={styles.indicator}
+              aria-label={`Go to course page ${index + 1}`}
+              aria-current={currentPage === index ? "page" : undefined}
+              aria-controls="course-pages"
+              onClick={() => setPage(index)}
+            ><span /></button>
+          ))}
+        </nav>
+        <div className={styles.pageArrows}>
+          <button type="button" className={styles.pageArrow} aria-label="Previous course page" aria-controls="course-pages" disabled={currentPage === 0} onClick={() => setPage(currentPage - 1)}>
+            <ArrowLeft size={21} aria-hidden="true" />
+          </button>
+          <button type="button" className={styles.pageArrow} aria-label="Next course page" aria-controls="course-pages" disabled={currentPage === pageCount - 1} onClick={() => setPage(currentPage + 1)}>
+            <ArrowRight size={21} aria-hidden="true" />
+          </button>
+        </div>
+        <p className={styles.pageStatus} role="status">{selectedCategory}: page {currentPage + 1} of {pageCount}</p>
       </div>
     </section>
   );

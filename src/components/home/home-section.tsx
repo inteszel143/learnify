@@ -1,12 +1,19 @@
 import Image from "next/image";
-import { GraduationCap, Star, Users } from "lucide-react";
+import { GraduationCap, Star } from "lucide-react";
 import { Navbar } from "@/components/navbar";
 import { CourseSearch } from "./course-search";
 import styles from "./home-section.module.css";
 
+const learnerPortraits = [
+  "photo-1531123897727-8f129e1688ce",
+  "photo-1507003211169-0a1dd7228f2d",
+  "photo-1494790108377-be9c29b29330",
+  "photo-1535713875002-d1d0cf377fde",
+];
+
 export function HomeSection() {
   return (
-    <div className={styles.home}>
+    <div id="home" className={styles.home} tabIndex={-1}>
       <Navbar />
       <main>
         <section aria-labelledby="home-heading" className={styles.hero}>
@@ -25,7 +32,19 @@ export function HomeSection() {
               <p>By students worldwide for quality learning and support.</p>
             </aside>
             <aside className={`${styles.card} ${styles.learners}`} aria-label="Learner community">
-              <Users className={styles.communityIcon} size={45} aria-hidden="true" />
+              <div className={styles.learnerPortraits} aria-hidden="true">
+                {learnerPortraits.map((portrait) => (
+                  <Image
+                    key={portrait}
+                    src={`https://images.unsplash.com/${portrait}?auto=format&fit=crop&crop=faces&w=128&h=128&q=80`}
+                    alt=""
+                    width={64}
+                    height={64}
+                    sizes="(max-width: 640px) 32px, 64px"
+                    className={styles.learnerPortrait}
+                  />
+                ))}
+              </div>
               <strong>60k+</strong>
               <p>Learners growing with expert guidance from trusted mentors.</p>
             </aside>

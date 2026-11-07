@@ -11,18 +11,23 @@
 .section::before {
   position: absolute;
   z-index: -1;
-  inset: 100px 0 -450px;
-  border-radius: 50% 50% 0 0 / 48% 48% 0 0;
-  background: repeating-radial-gradient(
-    ellipse at 50% 100%,
+  left: 50%;
+  bottom: 0;
+  width: max(120%, 1600px);
+  aspect-ratio: 1;
+  transform: translate(-50%, 50%);
+  pointer-events: none;
+  background: radial-gradient(
+    circle closest-side,
     #80b3fa 0,
-    #80b3fa 20%,
-    #b5d2fb 20.2%,
-    #b5d2fb 34%,
-    #d9e8fc 34.2%,
-    #d9e8fc 47%,
-    #eff5ff 47.2%,
-    #eff5ff 60%
+    #80b3fa 52%,
+    #b5d2fb 52.1%,
+    #b5d2fb 68%,
+    #d9e8fc 68.1%,
+    #d9e8fc 84%,
+    #eff5ff 84.1%,
+    #eff5ff 99.9%,
+    transparent 100%
   );
   content: "";
 }
@@ -37,7 +42,7 @@
   margin: 0;
   font-size: clamp(2.2rem, 3.5vw, 3.5rem);
   font-weight: 700;
-  letter-spacing: -0.035em;
+  letter-spacing: var(--heading-letter-spacing);
   line-height: 1.15;
 }
 
@@ -84,19 +89,15 @@
 }
 
 .visual {
-  position: absolute;
-  right: 0;
-  bottom: -1px;
-  left: 0;
-  width: min(100%, 1180px);
-  aspect-ratio: 1.8;
-  margin: 0 auto;
-  clip-path: ellipse(43% 76% at 50% 76%);
+  position: relative;
+  width: min(100%, 560px);
+  aspect-ratio: 0.9;
+  margin: 32px auto 0;
 }
 
 .student {
-  object-fit: cover;
-  object-position: center top;
+  object-fit: contain;
+  object-position: center bottom;
 }
 
 @media (max-width: 700px) {
@@ -106,8 +107,7 @@
   }
 
   .section::before {
-    inset: 160px -220px -200px;
-    border-radius: 50% 50% 0 0 / 40% 40% 0 0;
+    width: 1300px;
   }
 
   .content p {
@@ -120,11 +120,8 @@
   }
 
   .visual {
-    width: 145%;
-    max-width: 700px;
-    aspect-ratio: 1.4;
-    transform: translateX(-15.5%);
-    clip-path: ellipse(42% 75% at 50% 75%);
+    width: min(100%, 420px);
+    margin-top: 28px;
   }
 }
 

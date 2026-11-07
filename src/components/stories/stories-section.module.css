@@ -15,7 +15,7 @@
   margin: 0;
   font-size: clamp(2rem, 3.5vw, 3.5rem);
   font-weight: 700;
-  letter-spacing: -0.035em;
+  letter-spacing: var(--heading-letter-spacing);
   line-height: 1.15;
 }
 
@@ -27,10 +27,9 @@
 }
 
 .storyTrack {
-  overflow-x: auto;
-  overscroll-behavior-x: contain;
+  overflow: hidden;
   scrollbar-width: none;
-  touch-action: pan-x;
+  touch-action: pan-y;
 }
 
 .storyTrack::-webkit-scrollbar {
@@ -56,6 +55,7 @@
 }
 
 .storyTrack:hover .storyTrackInner,
+.storyTrack:focus-within .storyTrackInner,
 .storyTrack:active .storyTrackInner {
   animation-play-state: paused;
 }
@@ -161,6 +161,7 @@
   .storyTrack {
     overflow-x: auto;
     scrollbar-width: thin;
+    touch-action: auto;
   }
 
   .storyTrackInner {

@@ -21,10 +21,10 @@ export function LearningCtaSection() {
 
       <div className={styles.visual} aria-hidden="true">
         <Image
-          src="/images/home-student.png"
+          src="/images/learning-cta-student.png"
           alt=""
           fill
-          sizes="(max-width: 700px) 100vw, 1100px"
+          sizes="(max-width: 700px) calc(100vw - 36px), 560px"
           className={styles.student}
         />
       </div>
